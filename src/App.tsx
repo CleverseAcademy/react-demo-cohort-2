@@ -44,6 +44,10 @@ function App() {
     })
 
     setPosts(currentPosts)
+
+    // * Clear form after set posts
+    setNewTitle('')
+    setNewBody('')
   }
 
   return (
@@ -53,9 +57,9 @@ function App() {
 
       <form onSubmit={handleSubmit}>
         <label>Title</label>
-        <input type="text" onChange={(e) => setNewTitle(e.target.value)} required />
+        <input type="text" value={newTitle} onChange={(e) => setNewTitle(e.target.value)} required />
         <label>Body</label>
-        <input type="text" onChange={(e) => setNewBody(e.target.value)} required />
+        <input type="text" value={newBody} onChange={(e) => setNewBody(e.target.value)} required />
 
         <button type="submit">Submit</button>
       </form>
