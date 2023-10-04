@@ -4,6 +4,7 @@ import Greeting from './components/Greeting'
 import Navbar from './components/Navbar'
 import Post from './components/Post'
 import { PostDTO } from './types/dto'
+import axios from 'axios'
 
 function App() {
   const [posts, setPosts] = useState<PostDTO[] | null>(null)
@@ -15,14 +16,9 @@ function App() {
     const fetchData = async () => {
       setIsLoading(true)
       try {
-        const res = await fetch('https://jsonplaceholder.typicode.com/posts')
-        const data = await res.json()
+        const res = await axios.get<PostDTO[]>('https://jsonplaceholder.typicode.com/posts')
 
-        if (!res.ok) {
-          throw new Error('error')
-        }
-
-        setPosts(data)
+        setPosts(res.data)
       } catch (err) {
         console.error(err)
       } finally {
