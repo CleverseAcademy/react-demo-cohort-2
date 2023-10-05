@@ -25,7 +25,7 @@ const Home = () => {
 
   return (
     <div className={classes.container}>
-      <form onSubmit={handleSubmit}>
+      <form className={classes.postForm} onSubmit={handleSubmit}>
         <label>Title</label>
         <input type="text" value={newTitle} onChange={(e) => setNewTitle(e.target.value)} required />
         <label>Body</label>
@@ -36,7 +36,8 @@ const Home = () => {
         </button>
       </form>
 
-      <div className="feed-container">
+      <div className={classes.feedContainer}>
+        <h2>Feed</h2>
         {posts &&
           posts.map((post) => {
             return <Post key={post.id} post={post} />
